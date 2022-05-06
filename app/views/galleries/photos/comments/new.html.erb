@@ -1,0 +1,30 @@
+<h2> New Comment </h2>
+
+<%= form_with(model: @comment, url: gallery_photo_comments_path(@gallery, @photo)) do |form| %>
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <%= form.label :username, class: 'control-label fw-bold required' %>
+    </div>
+    <div class="col-md-7">
+      <%= form.text_field :username, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <%= form.label :comment, class: 'control-label fw-bold required' %>
+    </div>
+    <div class="col-md-7">
+      <%= form.text_field :comment, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <%= form.submit 'Create New Comment', class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <%= link_to 'Back', gallery_photo_path(@gallery, @photo) %>
+
+<% end %>

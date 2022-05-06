@@ -1,0 +1,25 @@
+<h2>
+  <%= @photo.name %>
+</h2>
+
+<%= image_tag @photo.image.variant(resize: "900x900") %>
+
+<%= link_to 'Add new Comment', new_gallery_photo_comment_path(@gallery, @photo), class: 'mt-3 btn btn-success'  %>
+
+<h3>Comments</h3>
+
+
+
+<% @photo.comments.each do |comment| %>
+
+  <h6> Commented By: <%= comment.username %> </h6>
+  <p>
+    <%= comment.comment %>
+  </p>
+
+  <%= format_date(comment.created_at) %>
+
+  <hr>
+<% end %>
+
+<%= link_to 'Back to Gallery', gallery_path(@gallery) %>
