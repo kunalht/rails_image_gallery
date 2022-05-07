@@ -7,6 +7,9 @@ class TagsController < ApplicationController
 
   def show
     # Show galleries and pictures associated here
+    @tag = Tag.find params[:id]
+    @gallery_tags = GalleryTag.where(tag: @tag)
+    @photo_tags = PhotoTag.where(tag: @tag)
   end
 
   def new
@@ -32,9 +35,26 @@ class TagsController < ApplicationController
 
   def assign_to_gallery
     gallery = Gallery.find params[:gallery_id]
+    tag = Tag.find params[:tag_id]
+    
+    if GalleryTag.where(gallery: gallery, tag: tag).exists?
+      flash[:error] = "Tag already assigned to this gallery"
+    else
+      gallery_tag = GalleryTag.create(gallery: gallery, tag: tag)
+    end
+    redirect_back(fallback_location: galleries_path)
   end
 
   def assign_to_photo
+    photo = Photo.find params[:photo_id]
+    tag = Tag.find params[:tag_id]
+
+    if PhotoTag.where(photo: photo, tag: tag).exists?
+      flash[:error] = "Photo already assigned to this gallery"
+    else
+      photo_tag = PhotoTag.create(photo: photo, tag: tag)
+    end
+    redirect_back(fallback_location: galleries_path)
   end
 
   private

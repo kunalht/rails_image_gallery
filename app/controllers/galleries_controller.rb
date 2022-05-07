@@ -2,7 +2,9 @@ class GalleriesController < ApplicationController
   def index
     page = params[:page] || 1
     page_size = 10
-    @galleries = Gallery.all.page(page).per(page_size)
+    @q = Gallery.ransack(params[:q])
+    @galleries = @q.result.page(page).per(page_size)
+
   end
   
   def new
@@ -23,8 +25,10 @@ class GalleriesController < ApplicationController
   def show
     @gallery = Gallery.find params[:id]
     page = params[:page] || 1
-    page_size = 5
-    @photos = @gallery.photos.page(page).per(page_size)
+    page_size = 10
+    @q = @gallery.photos.ransack(params[:q])
+    @photos = @q.result.page(page).per(page_size)
+    @gallery_tags = GalleryTag.where(gallery: @gallery)
     @tags = Tag.all
   end
 

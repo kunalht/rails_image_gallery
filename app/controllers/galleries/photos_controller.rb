@@ -15,6 +15,8 @@ class Galleries::PhotosController < ApplicationController
   def show
     @gallery = Gallery.find params[:gallery_id]
     @photo = Photo.find params[:id]
+    @photo_tags = PhotoTag.where(photo: @photo)
+    @tags = Tag.all
   end
 
   private

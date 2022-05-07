@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     get '/assign_to_gallery/:gallery_id', to: 'tags#assign_to_gallery', as: :assign_to_gallery
     get '/assign_to_photo/:photo_id', to: 'tags#assign_to_photo', as: :assign_to_photo
   end
+
+  root to: 'galleries#index'
 end

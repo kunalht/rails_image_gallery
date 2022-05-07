@@ -32,6 +32,7 @@ gem 'mini_magick', '~> 4.8'
 gem "image_processing", ">= 1.2"
 gem 'kaminari'
 gem 'webpacker', '~> 5.0'  
+gem 'ransack'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

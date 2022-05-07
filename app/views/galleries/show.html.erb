@@ -2,6 +2,11 @@
   <%= @gallery.name %>
 </h2>
 
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash[:error] %>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col-12">
@@ -31,6 +36,14 @@
           <%= format_date(@gallery.created_at) %>
         </dd>
       </div>
+      <div class="row">
+        Assigned Tags:
+        <div class="col-12">
+          <% @gallery_tags.each do |gt| %>
+            <%= link_to gt.tag.name, tag_path(gt.tag), class: "badge bg-primary"  %>
+          <% end %>
+        </div>
+      </div>
     </dl>
   </div>
 </div>
@@ -44,6 +57,18 @@
 
 
 <h3 class="mt-3"> Gallery Pictures </h3>
+
+<h5> Search Photos </h5>
+<%= search_form_for @q, url: gallery_path(@gallery) do |f| %>
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.label :description_cont %>
+  <%= f.search_field :description_cont %>
+
+  <%= f.submit 'Search', class: 'btn btn-primary' %>
+  <%= link_to 'Clear Filter', galleries_path, class: 'btn btn-secondary' %>    
+<% end %>
 
 <div class="row">
   <div class="col-9 col-md-12">
@@ -68,7 +93,7 @@
     <h4> Click on tag to assign to gallery </h4>
     <% @tags.each do |tag| %>
       <span class="badge bg-info">
-        <%= tag.name %>
+        <%= link_to tag.name, tag_assign_to_gallery_path(tag, @gallery) %>
       </span>
     <% end %>
   </div>
@@ -83,3 +108,4 @@
   </div>
 </div>
 
+<%= link_to 'Back to galleries', root_path %>

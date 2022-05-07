@@ -3,8 +3,22 @@
 <div class="row">
   <div class="col-md-12">
     <%= link_to 'New Gallery', new_gallery_path, class: 'btn btn-primary' %>
+
+    <%= link_to 'Tags', tags_path, class: 'ms-3 btn btn-info' %>
   </div>
 </div>
+
+<h5> Search Galleries </h5>
+<%= search_form_for @q do |f| %>
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.label :description_cont %>
+  <%= f.search_field :description_cont %>
+
+  <%= f.submit 'Search', class: 'btn btn-primary' %>
+  <%= link_to 'Clear Filter', galleries_path, class: 'btn btn-secondary' %>    
+<% end %>
 
 
 <table class="table table-striped">
