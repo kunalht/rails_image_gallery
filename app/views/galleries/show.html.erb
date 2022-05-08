@@ -50,7 +50,10 @@
 
 <%= link_to "edit #{@gallery.name}", edit_gallery_path(@gallery), class: "btn btn-primary" %>
 
-<%= link_to "Delete #{@gallery.name}", gallery_path(@gallery), method: :delete, class: "btn btn-danger" %>
+
+<%= form_tag  gallery_path(@gallery), method: :delete do %>
+  <%= button_tag "Delete #{@gallery.name}", class: 'btn btn-danger mt-2 mb-2' %>
+<% end %>
 
 
 <%= link_to 'upload new photo', new_gallery_photo_path(@gallery), class: 'btn btn-success' %>

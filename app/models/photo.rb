@@ -2,9 +2,9 @@ class Photo < ApplicationRecord
   has_one_attached :image
   validates :name, presence: true, uniqueness: true
   belongs_to :gallery
-  has_many :comments, inverse_of: :photo
+  has_many :comments, inverse_of: :photo, dependent: :destroy
   has_many :photo_tags, dependent: :destroy
-  has_many :photos, through: :photo_tags
+  has_many :photos, through: :photo_tags, dependent: :destroy
   accepts_nested_attributes_for :comments
 
   # def image_on_disk

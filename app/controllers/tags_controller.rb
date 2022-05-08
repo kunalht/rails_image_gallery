@@ -6,7 +6,6 @@ class TagsController < ApplicationController
   end
 
   def show
-    # Show galleries and pictures associated here
     @tag = Tag.find params[:id]
     @gallery_tags = GalleryTag.where(tag: @tag)
     @photo_tags = PhotoTag.where(tag: @tag)
@@ -23,14 +22,31 @@ class TagsController < ApplicationController
       @tag.save
       redirect_to tags_path
     else
+      flash[:error] = "Error occurred, please fix the error and try again"
       render "new"
     end
   end
 
   def edit
+    @tag = Tag.find params[:id]
   end
 
   def update
+    @tag = Tag.find params[:id]
+    @tag.assign_attributes(tag_params)    
+
+    if @tag.valid?
+      @tag.save!
+    else
+      flash[:error] = "Error occurred, please fix the error and try again"
+      render "edit"
+    end
+  end
+
+  def destroy
+    tag = Tag.find params[:id]
+    tag.destroy
+    redirect_to tags_path
   end
 
   def assign_to_gallery

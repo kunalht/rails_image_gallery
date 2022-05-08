@@ -44,6 +44,17 @@
           <% end %>
         </div>
       </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <%= link_to "edit #{@photo.name}", edit_gallery_photo_path(@gallery, @photo), class: "btn btn-primary" %>
+
+          <%= form_tag  gallery_photo_path(@gallery, @photo), method: :delete do %>
+            <%= button_tag "Delete #{@photo.name}", class: 'btn btn-danger mt-2 mb-2' %>
+          <% end %>
+          
+        </div>
+      </div>
     </dl>
   </div>
 </div>

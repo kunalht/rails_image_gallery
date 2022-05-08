@@ -1,0 +1,35 @@
+<div class="row mt-3">
+  <div class="col-md-3">
+    <%= form.label :name, class: 'control-label fw-bold required' %>
+  </div>
+  <div class="col-md-7">
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  </div>
+
+  <div class="row mt-3">
+  <div class="col-md-3">
+    <%= form.label :image, class: 'control-label fw-bold required' %>
+  </div>
+  <div class="col-md-7">
+    <%= form.file_field :image, class: 'form-control' %>
+  </div>
+  </div>
+
+  <div class="row mt-3">
+  <div class="col-md-3">
+    <%= form.label :description, class: 'control-label fw-bold required' %>
+  </div>
+  <div class="col-md-7">
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+  </div>
+
+  <div class="row mt-3">
+  <div class="col-md-3">
+    <%= form.label :shooting_date, class: 'control-label fw-bold required' %>
+  </div>
+  <div class="col-md-7">
+    <%= form.date_field :shooting_date, class: 'form-control' %>
+  </div>
+</div>

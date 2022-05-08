@@ -42,4 +42,9 @@
   </tbody>
 </table>
 
+<%= form_tag tag_path(@tag), method: :delete do %>
+  <%= button_tag 'Delete Tag', class: 'btn btn-danger' %>
+<% end %>
+
+
 <%= link_to 'Back to Tags', tags_path %>

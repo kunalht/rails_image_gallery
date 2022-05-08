@@ -1,4 +1,4 @@
-<h2> New Photo Upload </h2>
+<h2> Edit Photo <%= @photo.name %> </h2>
 
 <% if flash[:error] %>
   <div class="alert alert-danger" role="alert">
@@ -6,12 +6,12 @@
   </div>
 <% end %>
 
-<%= form_with(model: @photo, url: gallery_photos_path(@gallery)) do |form| %>
+<%= form_with(model: @photo, url: gallery_photo_path(@gallery, @photo), method: "patch") do |form| %>
 
   <%= render partial: 'form', locals: {form: form} %>
   <div class="row mt-2">
     <div class="col-md-12">
-      <%= form.submit 'Create New Photo', class: 'btn btn-primary' %>
+      <%= form.submit 'Update Photo', class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

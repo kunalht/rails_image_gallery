@@ -18,6 +18,7 @@ class GalleriesController < ApplicationController
       @gallery.save
       redirect_to galleries_path
     else
+      flash[:error] = "Error occurred, please fix the error and try again"
       render "new"
     end
   end
@@ -44,6 +45,7 @@ class GalleriesController < ApplicationController
       @gallery.save!
       redirect_to galleries_path
     else
+      flash[:error] = "Error occurred, please fix the error and try again"
       render "edit"
     end
   end
